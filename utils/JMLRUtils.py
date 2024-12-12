@@ -22,7 +22,7 @@ def update_current_page(mode):
             pass
 
 
-@st.cache_data()
+# @st.cache_data()
 def fetch_data():
     f = open("data.txt", 'r', encoding='utf-8')
     data = eval(f.read())
@@ -78,8 +78,10 @@ def search(volume: int, mode: str, content, placeholder, abs_expander, bib_expan
             WebScrapModel.readBib(paper, bib_expander)
             paper.updateBib(WebScrapModel.readBib(paper=paper))
             paper = WebScrapModel.translateToChinese(expander=translation_expander, paper=paper)
-    except:
-        placeholder.warning("真出错了！")
+            return paper
+    except Exception as e:
+        placeholder.warning(f"真出错了！{e}")
+        return paper
 
 
 def placePaperInfo(data, id, volume, placeholder, baseMode=0):

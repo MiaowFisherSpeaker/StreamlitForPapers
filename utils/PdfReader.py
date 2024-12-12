@@ -34,6 +34,9 @@ class PDFReader:
 
     def readPdf(self):
         if self.paperMode:
+
+            if not os.path.exists('./temp_pdf/tempPdf.PDF'):
+                self.download_pdf()
             with pdfplumber.open('./temp_pdf/tempPdf.PDF') as pdf:
                 for i, page in enumerate(pdf.pages):
                     if i == 1:

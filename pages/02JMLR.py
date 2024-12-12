@@ -31,7 +31,8 @@ def JMLR_page():
         ML.update_url()
         st.write("The current URL is", ML.url)
         with open("data.txt", "r", encoding="utf-8") as f:
-            data = eval(f.read())
+            txt = f.read()
+            data = eval(txt) if txt else {}
         if volume_number not in data:
             fetchDataButton = st.button("获取数据", on_click=ML.fetchInformation())  # 不知道为啥自动处理了
             processDataButton = st.button("处理数据", on_click=ML.dataProcess())
