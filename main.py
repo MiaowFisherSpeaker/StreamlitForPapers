@@ -7,8 +7,15 @@ import os
 def Index():
     st.title("论文信息查询工具 项目目录")
     # 获取pages目录下的所有文件
-    files = [f"./pages/{page}" for page in os.listdir("pages")]
-    labels = [" -> `go to`" + file.split("/")[1][:-3] for file in files]
+    filenames = [name for name in os.listdir("pages")]
+    files = [f"./pages/{name}" for name in filenames]
+    print(files)
+    # 为了可以github远程调用
+    for name,file in zip(filenames,files):
+        if not os.path.isfile(file):
+            file = f"https://github.com/MiaowFisherSpeaker/StreamlitForPapers/raw/main/pages/{name}"
+    print(files)
+    labels = [" -> `go to`" + name for name in filenames]
     for page, label in zip(files, labels):
         st.page_link(page=page, label=label)
 
@@ -25,7 +32,6 @@ def Index():
             time.sleep(0.01)
 
     st.write_stream(stream_text)
-    st.write("直播间人数超过两人开始")
 
 if __name__ == '__main__':
     Index()
