@@ -6,21 +6,21 @@ import os
 
 def Index():
     st.title("论文信息查询工具 项目目录")
-    # 获取pages目录下的所有文件
-    filenames = [name for name in os.listdir("pages")]
-    files = [f"./pages/{name}" for name in filenames]
-    print(files)
-    # 为了可以github远程调用
-    for i in range(len(files)):
-        name = filenames[i]
-        file = files[i]
-        if not os.path.exists(file):
-            files[i] = f"https://github.com/MiaowFisherSpeaker/StreamlitForPapers/raw/main/pages/{name}"
-            print(True)
-    print(files)
-    labels = [" -> `go to`" + name for name in filenames]
-    for page, label in zip(files, labels):
-        st.page_link(page=page, label=label)
+    # # 获取pages目录下的所有文件
+    # filenames = [name for name in os.listdir("pages")]
+    # files = [f"./pages/{name}" for name in filenames]
+    # print(files)
+    # # 为了可以github远程调用
+    # for i in range(len(files)):
+    #     name = filenames[i]
+    #     file = files[i]
+    #     if not os.path.exists(file):
+    #         files[i] = f"https://github.com/MiaowFisherSpeaker/StreamlitForPapers/raw/main/pages/{name}"
+    #         print(True)
+    # print(files)
+    # labels = [" -> `go to`" + name for name in filenames]
+    # for page, label in zip(files, labels):
+    #     st.page_link(page=page, label=label)
 
     project_intro = """
     该项目是一个基于Streamlit的论文信息查询工具，主要用于查询JMLR上的论文信息,
